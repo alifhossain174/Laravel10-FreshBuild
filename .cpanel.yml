@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/bizilabi/lara10.getupdemo.xyz
+       - export DEPLOYPATH=/home/bizilabi/lara10.getupdemo.xyz
     - /bin/cp -r * $DEPLOYPATH
     - /bin/cp -r .[^.]* $DEPLOYPATH
     - cd $DEPLOYPATH
