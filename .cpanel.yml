@@ -1,12 +1,14 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/bizilabi/lara10.getupdemo.xyz # Change 'username' to your cPanel username
+    - export DEPLOYPATH=/home/bizilabi/lara10.getupdemo.xyz
     - /bin/cp -r * $DEPLOYPATH
-    - /bin/cp .htaccess $DEPLOYPATH # Only if you have a custom .htaccess file
+    - /bin/cp -r .[^.]* $DEPLOYPATH
     - cd $DEPLOYPATH
-    - /opt/cpanel/composer/bin/composer install --no-dev # Install Composer dependencies without dev packages
-    - php artisan config:cache # Cache Laravel configuration
-    - php artisan route:cache # Cache routes for better performance
-    - php artisan view:cache # Cache Blade views for better performance
-    - php artisan optimize # Optimize other parts of the application
+    - composer install --no-dev
+    - cp .env.production .env
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
+    - php artisan migrate --force
+    - php artisan optimize
